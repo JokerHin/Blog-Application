@@ -33,6 +33,7 @@ const addNewBlog = async (req, res) => {
 
   try {
     await newlyCreateBlog.save();
+    console.log("saved");
   } catch (e) {
     console.log(e);
   }
@@ -42,7 +43,9 @@ const addNewBlog = async (req, res) => {
     session.startTransaction();
     await newlyCreateBlog.save(session);
     session.commitTransaction();
+    console.log("Success");
   } catch (e) {
+    console.log(e);
     return res.send(500).json({ message: e });
   }
 
